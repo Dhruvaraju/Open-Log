@@ -13,6 +13,11 @@ export class LoginComponent {
   registrationForm : FormGroup;
   login : boolean;
   register : boolean;
+  firstnameControl ;
+  lastNameControl ;
+  pwdControl ;
+
+
 
   onNgInit(){
     
@@ -41,15 +46,20 @@ export class LoginComponent {
     this.registrationForm = this.formBuilder.group({
       firstName : this.formBuilder.control(null,Validators.required),
       lastName : this.formBuilder.control(null,Validators.required),
-      regPassword : this.formBuilder.control(null,[Validators.required, Validators.minLength(8)]),
+      regUserName : this.formBuilder.control(null,[Validators.required,Validators.minLength(6),Validators.maxLength(10)]),
+      regPassword : this.formBuilder.control(null,[Validators.required, Validators.minLength(8), Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/)]),
       confirmPassword : this.formBuilder.control(null,Validators.required),
       city : this.formBuilder.control(null,Validators.required),
       state : this.formBuilder.control(null,Validators.required),
-      zip : this.formBuilder.control(null,Validators.required),
+      zip : this.formBuilder.control(null,[Validators.required,Validators.pattern(/^\d{6}$/)]),
       gender : this.formBuilder.control(null,Validators.required)
     },{
       validator :  this.checkWithRegPwd('regPassword' , 'confirmPassword')
     });
+    let pwdControl = this.registrationForm.get('zip');
+    pwdControl.valueChanges.subscribe(value =>{
+      console.log(pwdControl.errors);
+    })
   }
 
   //resetting all the basic form to initial values

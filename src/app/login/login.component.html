@@ -7,26 +7,39 @@
   <title>Document</title>
 </head>
 <body>
-  <div class="container">
-    <div class="jumbotron">
-      <h1 class="display-4">Open Log</h1>
-      <p class="lead">Test App to check on angular components and uses.</p>
-      <hr class="my-4">
-      <p>Can be used to check the repositories for a specific user in git hub using open Api</p>
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+    <a class="navbar-brand" href="#">Open Log</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+  <main role="main">
+    <div class="jumbotron"*ngIf="login">
+      <div class="col-sm-8 mx-auto">
+        <h1>Open Log</h1>
+        <p>Test App to check on angular components.</p>
+        <p>Can be used to check the repositories for a specific user in git hub using open Api.
+          Git repositories of a user can be accessed by using the git hub open API.
+        </p>
+        <p>
+          <button class="btn btn-primary" (click)="onRegClick()" *ngIf="login">Sign up &raquo;</button>
+        </p>
+      </div>
     </div>
-  </div>
+  </main>
+</div>
     <div>
     <div class="container" *ngIf="login">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()" class="px-4 py-3">
       <div class="form-group">
         <label for="username">Username<span style="color: red;">*</span> :</label>
-        <input type="username" class="form-control" id="userName" formControlName="userName" aria-describedby="emailHelp">
+        <input type="username" class="form-control" id="userName" formControlName="userName" aria-describedby="emailHelp" autofocus>
         <small id="userName" class="form-text text-muted">Username is case sensitive</small>
       </div>
       <div class="form-group">
         <label for="loginPassword">Password<span style="color: red;">*</span></label>
         <input type="password" class="form-control" id="loginPassword" formControlName="passWord" >
-        
       </div>
       <div class="form-row">
       <div class="col">
@@ -45,7 +58,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="firstName">First Name</label>
-          <input type="text" formControlName="firstName" class="form-control" id="firstName">
+          <input type="text" formControlName="firstName" class="form-control" id="firstName" >
         </div>
         <div class="form-group col-md-6">
           <label for="lastName">Last Name</label>
@@ -53,15 +66,45 @@
         </div>
       </div>
       <div class="form-group">
+        <label for="inputUsername">Username</label>
+        <input type="text" class="form-control" formControlName="regUserName" id="inputUsername">
+        <div *ngIf="registrationForm.get('regUserName').dirty" class="text-danger">
+          <div *ngIf= "registrationForm.get('regUserName').errors">
+            <div *ngIf= "registrationForm.get('regUserName').errors.required">
+              Required field
+            </div>
+            <div *ngIf= "registrationForm.get('regUserName').errors.minlength">
+              Username should be minimum 6 character
+            </div>
+            <div *ngIf= "registrationForm.get('regUserName').errors.maxlength">
+              Username should be maximum 10 character
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
         <label for="regPassword">Password</label>
         <input type="password" formControlName="regPassword" class="form-control" id="regPassword" placeholder="">
+          <div *ngIf="registrationForm.get('regPassword').dirty" class="text-danger">
+            <div *ngIf= "registrationForm.get('regPassword').errors">
+              <div *ngIf= "registrationForm.get('regPassword').errors.required">
+                Value Required
+              </div>
+              <div *ngIf= "registrationForm.get('regPassword').errors.minlength">
+                *password should be minimum 8 characters
+              </div>
+              <div *ngIf= "registrationForm.get('regPassword').errors.pattern">
+                *password should contain minimum ( 1 upper case variable, 1 lower case variable, 1 number)
+              </div>
+            </div>
+          </div>
       </div>
       <div class="form-group">
         <label for="confirmPassword">Confirm password</label>
         <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword" placeholder="">
         <div  *ngIf="registrationForm.get('confirmPassword').errors">
-        <div *ngIf="registrationForm.get('confirmPassword').errors.mustMatch" style="color: red;font-size: 12px;">
-          Passwords did not match</div>
+        <div *ngIf="registrationForm.get('confirmPassword').errors.mustMatch" class="text-danger">
+          *Password did not match</div>
         </div>
       </div>
 
@@ -83,6 +126,16 @@
         <div class="form-group col-md-2">
           <label for="inputZip">Zip</label>
           <input type="text" class="form-control" id="inputZip" formControlName="zip">
+          <div *ngIf="registrationForm.get('zip').dirty" style="text-danger">
+            <div *ngIf= "registrationForm.get('zip').errors">
+              <div *ngIf= "registrationForm.get('zip').errors.required">
+                *Zip field is required
+              </div>
+              <div *ngIf= "registrationForm.get('zip').errors.pattern">
+                *Zip code should be only in numeric and 6 digits
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="form-group">
@@ -98,7 +151,9 @@
           <input class="form-check-input" type="radio" formControlName="gender" id="genderO" value="others" >
           <label class="form-check-label" for="genderO">Others</label>
         </div>
+        <div class="text-danger" *ngIf="!registrationForm.valid">* All fields are mandatory</div>
       </div>
+      
       <div class="form-row">
         <div class="col">
       <button type="submit" class="btn btn-primary" [disabled]= "!registrationForm.valid">Sign in</button>
