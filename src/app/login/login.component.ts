@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, Validator } from '@angular/forms'
+import { FormGroup, FormBuilder, Validators, Validator } from '@angular/forms';
+import { ManageUsersService } from '../services/manage-users.service';
+import { User } from '../objects/user';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +15,8 @@ export class LoginComponent {
   registrationForm : FormGroup;
   login : boolean;
   register : boolean;
-  firstnameControl ;
-  lastNameControl ;
   pwdControl ;
+  userNameAvailable : boolean ;
 
 
 
@@ -23,11 +24,12 @@ export class LoginComponent {
     
   }
   //Constructor parameters will be available by default to the entire component
-  constructor(private formBuilder : FormBuilder){
+  constructor(private formBuilder : FormBuilder, private userService: ManageUsersService){
     this.buildForm();
     this.regFormBuild();
     this.login ;
     this.register ;
+    this.userNameAvailable;
   }
 
   //Creating the form controls
@@ -43,6 +45,7 @@ export class LoginComponent {
 
   //building Registration form
   regFormBuild(){
+    this.userNameAvailable = false;
     this.registrationForm = this.formBuilder.group({
       firstName : this.formBuilder.control(null,Validators.required),
       lastName : this.formBuilder.control(null,Validators.required),
@@ -56,10 +59,10 @@ export class LoginComponent {
     },{
       validator :  this.checkWithRegPwd('regPassword' , 'confirmPassword')
     });
-    let pwdControl = this.registrationForm.get('zip');
-    pwdControl.valueChanges.subscribe(value =>{
-      console.log(pwdControl.errors);
-    })
+    //let pwdControl = this.registrationForm.get('zip');
+    //pwdControl.valueChanges.subscribe(value =>{
+      //console.log(pwdControl.errors);
+    //})
   }
 
   //resetting all the basic form to initial values
@@ -76,11 +79,25 @@ export class LoginComponent {
   onRegClick(){
     this.login =  false;
     this.register = true;
-    console.log("login value is "+ this.login +"and register value is "+ this.register);
+    //console.log("login value is "+ this.login +"and register value is "+ this.register);
   }
 
   onRegistrationSubmit(){
     console.log(this.registrationForm.value);
+    let userDetail = JSON.stringify(this.registrationForm.value);
+    this.userService.addUser(this.registrationForm.value);
+  }
+
+  userNameVerify(){
+   let validationOutput =  this.userService.verifyUser(this.registrationForm.get('regUserName').value);
+   this.userNameAvailable = validationOutput;
+   if(validationOutput == true){
+    this.userNameAvailable = true;
+    console.log('Username Verification check validation output : '+validationOutput);
+   }else{
+    this.userNameAvailable = false;
+   }
+   
   }
 
   checkWithRegPwd(pwd , cnfPwd){
@@ -95,12 +112,12 @@ export class LoginComponent {
       }
       // set error on matchingControl if validation fails
       if (control.value !== matchingControl.value) {
-        console.log("Did not Match");
+        //console.log("Did not Match");
       //Setting Error occurred
           matchingControl.setErrors({ mustMatch: true });
-          console.log(matchingControl.errors);
+          //console.log(matchingControl.errors);
       } else {
-        console.log("Match");
+        //console.log("Match");
           matchingControl.setErrors(null);
       }
   }

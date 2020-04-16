@@ -67,7 +67,10 @@
       </div>
       <div class="form-group">
         <label for="inputUsername">Username</label>
-        <input type="text" class="form-control" formControlName="regUserName" id="inputUsername">
+        <input type="text" class="form-control" formControlName="regUserName" id="inputUsername" (keyup)="userNameVerify()">
+        <div *ngIf= "userNameAvailable" class="text-danger">
+          *Username taken choose other user name.
+        </div>
         <div *ngIf="registrationForm.get('regUserName').dirty" class="text-danger">
           <div *ngIf= "registrationForm.get('regUserName').errors">
             <div *ngIf= "registrationForm.get('regUserName').errors.required">
@@ -116,11 +119,11 @@
         <div class="form-group col-md-4">
           <label for="inputState">State</label>
           <select id="inputState" class="form-control" formControlName="state">
-            <option>Chennai</option>
+            <option>TamilNadu</option>
+            <option>Andhra</option>
+            <option>Kerala</option>
             <option>Delhi</option>
-            <option>Pondicherry</option>
-            <option>Hyderabad</option>
-            <option>Bangalore</option>
+            <option>Karnataka</option>
           </select>
         </div>
         <div class="form-group col-md-2">
@@ -131,7 +134,7 @@
               <div *ngIf= "registrationForm.get('zip').errors.required">
                 *Zip field is required
               </div>
-              <div *ngIf= "registrationForm.get('zip').errors.pattern">
+              <div *ngIf= "registrationForm.get('zip').errors.pattern" class="text-danger">
                 *Zip code should be only in numeric and 6 digits
               </div>
             </div>

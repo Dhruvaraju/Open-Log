@@ -7,6 +7,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { HomePageComponent } from './home-page/home-page.component';
 import { GitDetailsComponent } from './git-details/git-details.component';
 import { LoginComponent } from './login/login.component';
+import { ManageUsersService } from './services/manage-users.service'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ ManageUsersService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
