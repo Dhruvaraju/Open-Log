@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, Validator } from '@angular/forms';
 import { GitService } from '../services/git-service.service';
 import { GitUser } from '../objects/gituser';
+import {RootObject, Owner, License} from '../objects/repos';
 
 @Component({
   selector: 'app-git-details',
@@ -36,6 +37,14 @@ export class GitDetailsComponent implements OnInit {
     }
   }
   )
+}
+
+fetchRepos(){
+  this.gitService.getRepos(this.detailForm.get('userName').value).subscribe(res =>{
+    if(res.status == 200){
+      console.log(res.body.toString());
+    }
+  })
 }
 
 }

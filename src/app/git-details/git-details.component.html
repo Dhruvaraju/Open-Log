@@ -60,6 +60,9 @@
                   <label class="form-group">GIT ID : {{userDetails.id}}</label>
                   <label class="form-group">Account Created on : {{userDetails.created_at | date}}</label>
                   <label class="form-group">Last Updated on : {{userDetails.updated_at | date}}</label>
+                  <div class="form-group col-md-6">
+                  <button class="btn btn-primary" (click)="fetchRepos()" > Repositories </button>
+                </div>
                 </div>
               </div>
             </div>

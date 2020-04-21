@@ -14,7 +14,8 @@ export class GitService {
     return this.http.get(url, {observe: 'response'});
   }
 
-  getRepos(){
-
+  getRepos(usr){
+    let url = 'http://api.github.com/users/'+usr+'/repos';
+    return this.http.get(url,{observe: 'response'});
   }
 }
