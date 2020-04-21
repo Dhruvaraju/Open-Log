@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, Validator } from '@angular/forms';
 import { ManageUsersService } from '../services/manage-users.service';
 import { User } from '../objects/user';
+import { GitService } from '../services/git-service.service';
+import { Router } from '@angular/router';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +18,7 @@ export class LoginComponent {
   registrationForm : FormGroup;
   login : boolean;
   register : boolean;
+  userRegistered : boolean;
   pwdControl ;
   userNameAvailable : boolean ;
 
@@ -24,12 +28,15 @@ export class LoginComponent {
     
   }
   //Constructor parameters will be available by default to the entire component
-  constructor(private formBuilder : FormBuilder, private userService: ManageUsersService){
+  constructor(private formBuilder : FormBuilder, private userService: ManageUsersService, private gitService :GitService,
+    private router : Router){
     this.buildForm();
     this.regFormBuild();
     this.login ;
     this.register ;
     this.userNameAvailable;
+    this.userRegistered;
+
   }
 
   //Creating the form controls
@@ -73,29 +80,41 @@ export class LoginComponent {
 
   onSubmitLogin(){
     console.log(this.loginForm.value);
-    this.loginForm.reset();
+    let validUsr = this.userService.checkUserAvailability(this.loginForm.get('userName').value, this.loginForm.get('passWord').value);
+    if(validUsr){
+      this.loginForm.reset();
+      this.router.navigate(['homepage']);
+    }else{
+      this.loginForm.reset();
+      this.userRegistered = true;
+    }
   }
 
   onRegClick(){
-    this.login =  false;
+    this.userRegistered = false;
+   this.login =  false;
     this.register = true;
-    //console.log("login value is "+ this.login +"and register value is "+ this.register);
+    
   }
 
   onRegistrationSubmit(){
     console.log(this.registrationForm.value);
     let userDetail = JSON.stringify(this.registrationForm.value);
     this.userService.addUser(this.registrationForm.value);
+    this.login =  true;
+    this.register = false;
   }
 
   userNameVerify(){
    let validationOutput =  this.userService.verifyUser(this.registrationForm.get('regUserName').value);
    this.userNameAvailable = validationOutput;
    if(validationOutput == true){
+     this.registrationForm.get('regUserName').setErrors({UserExists: true});
     this.userNameAvailable = true;
     console.log('Username Verification check validation output : '+validationOutput);
    }else{
     this.userNameAvailable = false;
+    this.registrationForm.get('regUserName').setErrors(null);
    }
    
   }

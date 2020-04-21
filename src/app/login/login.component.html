@@ -41,6 +41,9 @@
         <label for="loginPassword">Password<span style="color: red;">*</span></label>
         <input type="password" class="form-control" id="loginPassword" formControlName="passWord" >
       </div>
+      <div class="text-danger" *ngIf="userRegistered">
+        *User not registered kindly register.
+      </div>
       <div class="form-row">
       <div class="col">
       <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
@@ -129,7 +132,7 @@
         <div class="form-group col-md-2">
           <label for="inputZip">Zip</label>
           <input type="text" class="form-control" id="inputZip" formControlName="zip">
-          <div *ngIf="registrationForm.get('zip').dirty" style="text-danger">
+          <div *ngIf="registrationForm.get('zip').dirty" class="text-danger">
             <div *ngIf= "registrationForm.get('zip').errors">
               <div *ngIf= "registrationForm.get('zip').errors.required">
                 *Zip field is required
@@ -167,7 +170,5 @@
     </div>
     </form>
   </div>
-  
-  
 </body>
 </html>

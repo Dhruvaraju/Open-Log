@@ -1,1 +1,70 @@
-<p>git-details works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Search</title>
+</head>
+<body>
+    <div class="container">
+        <!--Nav Bar Starts-->
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+            <h5 class="my-0 mr-md-auto font-weight-normal">Open Log</h5>
+            <nav class="my-2 my-md-0 mr-md-3">
+              <a class="p-2 text-dark" href="#">Feed back</a>
+              <a class="p-2 text-dark" href="#">Contact us</a>
+            </nav>
+            <a class="btn btn-outline-primary" href="homepage">Home &raquo;</a>
+          </div>
+        <!--Nav Bar Ends-->
+        <!-- Feature Details Card Start-->
+        <div class="card">
+            <h5 class="card-header text-center">Git Search</h5>
+            <div class="card-body">
+              <h5 class="card-title">Features</h5>
+              <p class="card-text">Enables,searching for a user with username, fetching repositories of a user. 
+                  Fetching files of a specific repository.<br> Based on user searched</p>
+            </div>
+          </div>
+        <!-- Feature Details Card end-->
+        <!--User Search card Start-->
+        <div class="card" style="margin-top: 0.5em;">
+            <h5 class="card-header">Search for a username in GitHub</h5>
+            <div class="card-body">
+              <form [formGroup]="detailForm">
+                <h5 class="card-title">Search for a github user</h5>
+                <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="username" class="form-control" id="userName" formControlName="userName" 
+                    placeholder="Enter Username" autofocus>
+                    <small id="userName" class="form-text text-muted">Username is case sensitive</small>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <button class="btn btn-primary" (click)="userSearch()" [disabled]="!detailForm.valid">Search</button>
+                  </div>
+                </div>
+            </form>
+              </div>
+              </div>
+        <!-- User Search card End-->
+        <!--User Details Start-->
+        <div class="card" style="margin-top:0.5em" *ngIf="userDetails">
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <img src="{{userDetails.avatar_url}}" class="rounded float-left" style="width: 150px;height: 150px;" alt="...">
+                </div>
+                <div class="form-group col-md-6">
+                  <h5 class="card-title">Name : {{userDetails.name}}</h5>
+                  <label class="form-group">Log in : {{userDetails.login}}</label><br>
+                  <label class="form-group">GIT ID : {{userDetails.id}}</label>
+                  <label class="form-group">Account Created on : {{userDetails.created_at | date}}</label>
+                  <label class="form-group">Last Updated on : {{userDetails.updated_at | date}}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!--User Detail End-->
+    </div>  
+</body>
+</html>

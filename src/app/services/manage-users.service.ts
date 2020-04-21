@@ -20,14 +20,20 @@ export class ManageUsersService {
   ];
   constructor() { }
 
-  checkUserAvailability(){
-    return "available";
+  checkUserAvailability(userName : String, pwd : String){
+    console.log(`username is ${userName} and password is ${pwd}`);  
+      for(let user of this.usersList){
+        if(userName == user.regUserName && pwd == user.regPassword){
+          return true;
+        }
+      }
+      return false;
   }
 
   addUser(userDetail : User){
     this.usersList.push(userDetail);
-    console.log("Console from service"+this.usersList);
-    return "User Added";
+    console.log("Console from service"+JSON.stringify(this.usersList));
+    return true;
   }
 
   verifyUser(userName : String){

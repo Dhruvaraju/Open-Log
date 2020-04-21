@@ -11,7 +11,8 @@ const routes: Routes = [
   {path:'', component: LoginComponent},
   {path:'homepage', component: HomePageComponent},
   {path:'passwordReset', component: PasswordResetComponent},
-  {path:'gitDetails', component: GitDetailsComponent}
+  {path:'gitDetails', component: GitDetailsComponent},
+  {path:'login',component:LoginComponent}
 ];
 
 @NgModule({
