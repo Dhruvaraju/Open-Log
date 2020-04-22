@@ -34,9 +34,9 @@
               <form [formGroup]="detailForm">
                 <h5 class="card-title">Search for a github user</h5>
                 <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <input type="username" class="form-control" id="userName" formControlName="userName" 
-                    placeholder="Enter Username" autofocus>
+                    placeholder="Enter Username" autofocus (keyup)="clearDetails()">
                     <small id="userName" class="form-text text-muted">Username is case sensitive</small>
                   </div>
                   <div class="form-group col-md-6">
@@ -48,7 +48,7 @@
               </div>
         <!-- User Search card End-->
         <!--User Details Start-->
-        <div class="card" style="margin-top:0.5em" *ngIf="userDetails">
+        <div class="card form-group col-md-7" style="margin-top:0.5em" *ngIf="userDetails">
             <div class="card-body">
               <div class="form-row">
                 <div class="form-group col-md-4">
@@ -57,7 +57,7 @@
                 <div class="form-group col-md-6">
                   <h5 class="card-title">Name : {{userDetails.name}}</h5>
                   <label class="form-group">Log in : {{userDetails.login}}</label><br>
-                  <label class="form-group">GIT ID : {{userDetails.id}}</label>
+                  <label class="form-group">GIT ID : {{userDetails.id}}</label><br>
                   <label class="form-group">Account Created on : {{userDetails.created_at | date}}</label>
                   <label class="form-group">Last Updated on : {{userDetails.updated_at | date}}</label>
                   <div class="form-group col-md-6">
@@ -68,6 +68,20 @@
             </div>
           </div>
         <!--User Detail End-->
+        <!-- Repository card stack Start-->
+        <div class="card-columns">
+        <div class="card border-dark mb-3" *ngFor="let item of repo"  style="max-width: 18rem;">
+          <div class="card-header">{{ item.name }}</div>
+          <div class="card-body text-dark">
+            <p class="card-text">Created on: {{item.created_at | date}}</p>
+            <p class="card-text">Updated on: {{item.updated_at | date}}</p>
+            <p class="card-text">{{item.language}}</p>
+          </div>
+        </div>
+        </div>
+        <!-- Repository card stack End-->
+
+      
     </div>  
 </body>
 </html>

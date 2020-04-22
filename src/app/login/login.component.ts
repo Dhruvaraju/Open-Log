@@ -114,7 +114,9 @@ export class LoginComponent {
     console.log('Username Verification check validation output : '+validationOutput);
    }else{
     this.userNameAvailable = false;
-    this.registrationForm.get('regUserName').setErrors(null);
+    if(this.registrationForm.get('regUserName').errors && this.registrationForm.get('regUserName').errors.UserExists ){
+      this.registrationForm.get('regUserName').setErrors(null);
+    }
    }
    
   }

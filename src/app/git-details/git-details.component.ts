@@ -12,6 +12,7 @@ import {RootObject, Owner, License} from '../objects/repos';
 export class GitDetailsComponent implements OnInit {
   detailForm: FormGroup;
   userDetails : GitUser;
+  repo : RootObject[];
   
 
   constructor(private gitService : GitService, private formBuilder: FormBuilder) { 
@@ -42,9 +43,15 @@ export class GitDetailsComponent implements OnInit {
 fetchRepos(){
   this.gitService.getRepos(this.detailForm.get('userName').value).subscribe(res =>{
     if(res.status == 200){
-      console.log(res.body.toString());
+      console.log(JSON.stringify(res.body));
+      this.repo = JSON.parse(JSON.stringify(res.body));
     }
   })
+}
+
+clearDetails(){
+  this.userDetails = null;
+  this.repo = null;
 }
 
 }
