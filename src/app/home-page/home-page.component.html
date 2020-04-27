@@ -11,9 +11,9 @@
       <h5 class="my-0 mr-md-auto font-weight-normal">Open Log</h5>
       <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="gitDetails">Git Search</a>
-        <a class="p-2 text-dark" href="#">Feed back</a>
-        <a class="p-2 text-dark" href="passwordReset">password Reset</a>
-        <a class="p-2 text-dark" href="#">Contact us</a>
+        <a class="p-2 text-dark" href="#" >Feed back</a>
+        <a class="p-2 text-dark" href="passwordReset" >password Reset</a>
+        <a class="p-2 text-dark" href="#" >Contact us</a>
       </nav>
       <a class="btn btn-outline-primary" href="homepage">Home &raquo;</a>
     </div>
@@ -39,7 +39,7 @@
               <li>Repository Search</li>
               <li>Files in repository</li>
             </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Git Search</button>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary" [disabled]="true">Git Search</button>
           </div>
         </div>
         <div class="card mb-4 shadow-sm">
@@ -54,7 +54,7 @@
               <li>Log details</li>
               <li>View Logs</li>
             </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Learning log</button>
+            <button type="button" class="btn btn-lg btn-block btn-primary" [disabled]="true" >Learning log</button>
           </div>
         </div>
         <div class="card mb-4 shadow-sm">
@@ -69,7 +69,7 @@
               <li>Provide</li>
               <li>Metrics</li>
             </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Feedback</button>
+            <button type="button" class="btn btn-lg btn-block btn-primary" [disabled]="true">Feedback</button>
           </div>
         </div>
       </div>
