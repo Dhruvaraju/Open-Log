@@ -30,46 +30,52 @@
         <!--User Search card Start-->
         <div class="card" style="margin-top: 0.5em;">
             <h5 class="card-header">Search for a username in GitHub</h5>
-            <div class="card-body">
+            <div class="row">
+              <div class="col-sm-6">
+            <div class="card-body" style="width: 50em;">
               <form [formGroup]="detailForm">
-                <h5 class="card-title">Search for a github user</h5>
                 <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-5">
                     <input type="username" class="form-control" id="userName" formControlName="userName" 
-                    placeholder="Enter Username" autofocus (keyup)="clearDetails()">
+                    placeholder="Enter Git Username" autofocus (keyup)="clearDetails()">
                     <small id="userName" class="form-text text-muted">Username is case sensitive</small>
-                  </div>
-                  <div class="form-group col-md-6">
-                      <button class="btn btn-primary" (click)="userSearch()" [disabled]="!detailForm.valid">Search</button>
-                  </div>
-                </div>
-            </form>
-              </div>
-              </div>
-        <!-- User Search card End-->
-        <!--User Details Start-->
-        <div class="card form-group col-md-7" style="margin-top:0.5em" *ngIf="userDetails">
-            <div class="card-body">
-              <div class="form-row">
-                <div class="form-group col-md-4">
-                  <img src="{{userDetails.avatar_url}}" class="rounded float-left" style="width: 150px;height: 150px;" alt="...">
                 </div>
                 <div class="form-group col-md-6">
-                  <h5 class="card-title">Name : {{userDetails.name}}</h5>
-                  <label class="form-group">Log in : {{userDetails.login}}</label><br>
-                  <label class="form-group">GIT ID : {{userDetails.id}}</label><br>
-                  <label class="form-group">Account Created on : {{userDetails.created_at | date}}</label>
-                  <label class="form-group">Last Updated on : {{userDetails.updated_at | date}}</label>
-                  <div class="form-group col-md-6">
-                  <button class="btn btn-primary" (click)="fetchRepos()" > Repositories </button>
-                </div>
-                </div>
+                      <button class="btn btn-primary" (click)="userSearch()" [disabled]="!detailForm.valid">Search</button>
+                 </div>
               </div>
-            </div>
+            </form>
           </div>
-        <!--User Detail End-->
+        </div>
+        <div class="col-sm-6">
+<!--User Details Start-->
+<div class="card form-group" style="margin:0.5em" *ngIf="userDetails">
+  <div class="card-body">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <img src="{{userDetails.avatar_url}}" class="rounded float-left" style="width: 150px;height: 150px;" alt="...">
+          <button class="btn btn-primary" (click)="fetchRepos()" style="margin: 0.5em;" > Repositories </button>
+      </div>
+      <div class="form-group col-sm">
+        <h5 class="card-title">Name : {{userDetails.name}}</h5>
+        <label class="form-group">Log in : {{userDetails.login}}</label><br>
+        <label class="form-group">GIT ID : {{userDetails.id}}</label><br>
+        <label class="form-group">Account Created on : {{userDetails.created_at | date}}</label>
+        <label class="form-group">Last Updated on : {{userDetails.updated_at | date}}</label>
+      </div>
+    </div>
+  </div>
+</div>
+<!--User Detail End-->
+</div>
+</div>
+</div>
+         <!-- User Search card End-->
+        
+        
         <!-- Repository card stack Start-->
-        <div class="card-columns">
+        <div class="container" style="margin: 0.5em;">
+        <div class="card-columns" >
         <div class="card border-dark mb-3" *ngFor="let item of repo"  style="max-width: 18rem;">
           <div class="card-header">{{ item.name }}</div>
           <div class="card-body text-dark">
@@ -79,6 +85,7 @@
           </div>
         </div>
         </div>
+      </div>
         <!-- Repository card stack End-->
 
       
