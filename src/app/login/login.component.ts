@@ -5,6 +5,9 @@ import { User } from '../objects/user';
 import { GitService } from '../services/git-service.service';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { State } from '../reducers';
+import { AddLogIns } from '../actions/log-in.actions';
 
 @Component({
   selector: 'app-login',
@@ -29,14 +32,13 @@ export class LoginComponent {
   }
   //Constructor parameters will be available by default to the entire component
   constructor(private formBuilder : FormBuilder, private userService: ManageUsersService, private gitService :GitService,
-    private router : Router){
+    private router : Router, private store : Store<State>){
     this.buildForm();
     this.regFormBuild();
     this.login ;
     this.register ;
     this.userNameAvailable;
     this.userRegistered;
-
   }
 
   //Creating the form controls
@@ -81,7 +83,8 @@ export class LoginComponent {
   onSubmitLogin(){
     console.log(this.loginForm.value);
     let validUsr = this.userService.checkUserAvailability(this.loginForm.get('userName').value, this.loginForm.get('passWord').value);
-    if(validUsr){
+    if(validUsr){ 
+      this.store.dispatch(new AddLogIns(true, this.loginForm.get('userName').value));
       this.loginForm.reset();
       this.router.navigate(['homepage']);
     }else{
