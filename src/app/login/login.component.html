@@ -15,7 +15,7 @@
     </button>
   </nav>
   <main role="main">
-    <div class="jumbotron"*ngIf="login">
+    <div class="jumbotron"*ngIf="login" style="margin-top: 0.5em;">
       <div class="col-sm-8 mx-auto">
         <h1>Open Log</h1>
         <p>Test App to check on angular components.</p>
@@ -170,5 +170,11 @@
     </div>
     </form>
   </div>
+<div class="container" *ngIf="registrationComplete" style="margin-top: 1em;">
+  <div class="alert alert-success" role="alert">
+    Registration Successful 
+  </div>
+  <button type="button" class="btn btn-info" (click)="gotoLogin()">Log-in Now</button>
+</div>
 </body>
 </html>

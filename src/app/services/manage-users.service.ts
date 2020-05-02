@@ -45,5 +45,10 @@ export class ManageUsersService {
     return false;
   }
   
+  log(msg : String){
+    if(null != msg){
+        console.log(new Date().toLocaleString()+" "+msg);
+    }  
+ }
 
 }

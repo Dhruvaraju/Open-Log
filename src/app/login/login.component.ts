@@ -23,10 +23,8 @@ export class LoginComponent {
   register : boolean;
   userRegistered : boolean;
   pwdControl ;
-  userNameAvailable : boolean ;
-
-
-
+  userNameAvailable : boolean;
+  registrationComplete : boolean;
   onNgInit(){
     
   }
@@ -49,7 +47,7 @@ export class LoginComponent {
     });
     this.login = true;
     this.register = false;
-    
+    this.registrationComplete = false;
   }
 
   //building Registration form
@@ -68,15 +66,10 @@ export class LoginComponent {
     },{
       validator :  this.checkWithRegPwd('regPassword' , 'confirmPassword')
     });
-    //let pwdControl = this.registrationForm.get('zip');
-    //pwdControl.valueChanges.subscribe(value =>{
-      //console.log(pwdControl.errors);
-    //})
   }
 
   //resetting all the basic form to initial values
   resetRegisterForm(){
-    console.log(this.registrationForm.value);
     this.registrationForm.reset();
   }
 
@@ -97,15 +90,20 @@ export class LoginComponent {
     this.userRegistered = false;
    this.login =  false;
     this.register = true;
-    
+  }
+
+  gotoLogin(){
+    this.login =  true;
+    this.register = false;
+    this.registrationComplete = false;
   }
 
   onRegistrationSubmit(){
-    console.log(this.registrationForm.value);
     let userDetail = JSON.stringify(this.registrationForm.value);
     this.userService.addUser(this.registrationForm.value);
-    this.login =  true;
+    this.login =  false;
     this.register = false;
+    this.registrationComplete = true;
   }
 
   userNameVerify(){
@@ -114,7 +112,6 @@ export class LoginComponent {
    if(validationOutput == true){
      this.registrationForm.get('regUserName').setErrors({UserExists: true});
     this.userNameAvailable = true;
-    console.log('Username Verification check validation output : '+validationOutput);
    }else{
     this.userNameAvailable = false;
     if(this.registrationForm.get('regUserName').errors && this.registrationForm.get('regUserName').errors.UserExists ){

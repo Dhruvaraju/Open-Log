@@ -1,0 +1,17 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm" >
+    <h5 class="my-0 mr-md-auto font-weight-normal">Open Log</h5>
+    <nav class="my-2 my-md-0 mr-md-3" >
+      <a class="p-2 text-dark" routerLink="/gitDetails">Git Search</a>
+      <a class="p-2 text-dark" routerLink="/learnLog" >Learning Log</a>
+      <a class="p-2 text-dark" routerLink="/feedback" >Feedback</a>
+    </nav>
+    <a class="btn btn-outline-primary" routerLink="/homepage" >Home &raquo;</a>
+ </div>
+ 
+ <div class="navbar navbar-light bg-light" style="margin-bottom:0.5em">
+    <a class="">Logged in as: {{userName}} </a>
+    <div class="form-inline">
+      <a class="btn btn-outline-info btn-sm" (click)="userLogout()">Logout</a>
+    </div>
+ </div>
+ 
