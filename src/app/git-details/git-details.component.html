@@ -38,6 +38,9 @@
                       <button class="btn btn-primary" (click)="userSearch()" [disabled]="!detailForm.valid">Search</button>
                  </div>
               </div>
+              <div class="text-danger" *ngIf="userMsg">
+                <img src="../../assets/alert-triangle.svg" alt="Error"> {{userMsg}}
+              </div>
             </form>
           </div>
         </div>
@@ -57,6 +60,9 @@
         <label class="form-group">Account Created on : {{userDetails.created_at | date}}</label>
         <label class="form-group">Last Updated on : {{userDetails.updated_at | date}}</label>
       </div>
+    </div>
+    <div class="text-danger" *ngIf="reposMsg">
+      <img src="../../assets/alert-triangle.svg" alt="Error"> {{reposMsg}}
     </div>
   </div>
 </div>

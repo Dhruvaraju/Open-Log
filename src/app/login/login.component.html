@@ -42,7 +42,7 @@
         <input type="password" class="form-control" id="loginPassword" formControlName="passWord" >
       </div>
       <div class="text-danger" *ngIf="userRegistered">
-        *User not registered kindly register.
+        <img src="../../assets/alert-triangle.svg" alt="Error"> User not registered kindly register.
       </div>
       <div class="form-row">
       <div class="col">
@@ -72,18 +72,18 @@
         <label for="inputUsername">Username</label>
         <input type="text" class="form-control" formControlName="regUserName" id="inputUsername" (keyup)="userNameVerify()">
         <div *ngIf= "userNameAvailable" class="text-danger">
-          *Username taken choose other user name.
+          <img src="../../assets/alert-triangle.svg" alt="Error"> Username taken choose other user name.
         </div>
         <div *ngIf="registrationForm.get('regUserName').dirty" class="text-danger">
           <div *ngIf= "registrationForm.get('regUserName').errors">
             <div *ngIf= "registrationForm.get('regUserName').errors.required">
-              Required field
+              <img src="../../assets/alert-triangle.svg" alt="Error"> Required field
             </div>
             <div *ngIf= "registrationForm.get('regUserName').errors.minlength">
-              Username should be minimum 6 character
+              <img src="../../assets/alert-triangle.svg" alt="Error"> Username should be minimum 6 character
             </div>
             <div *ngIf= "registrationForm.get('regUserName').errors.maxlength">
-              Username should be maximum 10 character
+              <img src="../../assets/alert-triangle.svg" alt="Error"> Username should be maximum 10 character
             </div>
           </div>
         </div>
@@ -94,13 +94,13 @@
           <div *ngIf="registrationForm.get('regPassword').dirty" class="text-danger">
             <div *ngIf= "registrationForm.get('regPassword').errors">
               <div *ngIf= "registrationForm.get('regPassword').errors.required">
-                Value Required
+                <img src="../../assets/alert-triangle.svg" alt="Error"> Value Required
               </div>
               <div *ngIf= "registrationForm.get('regPassword').errors.minlength">
-                *password should be minimum 8 characters
+                <img src="../../assets/alert-triangle.svg" alt="Error"> password should be minimum 8 characters
               </div>
               <div *ngIf= "registrationForm.get('regPassword').errors.pattern">
-                *password should contain minimum ( 1 upper case variable, 1 lower case variable, 1 number)
+                <img src="../../assets/alert-triangle.svg" alt="Error"> password should contain minimum ( 1 upper case variable, 1 lower case variable, 1 number)
               </div>
             </div>
           </div>
@@ -110,7 +110,7 @@
         <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword" placeholder="">
         <div  *ngIf="registrationForm.get('confirmPassword').errors">
         <div *ngIf="registrationForm.get('confirmPassword').errors.mustMatch" class="text-danger">
-          *Password did not match</div>
+          <img src="../../assets/alert-triangle.svg" alt="Error"> Password did not match</div>
         </div>
       </div>
 
@@ -135,10 +135,10 @@
           <div *ngIf="registrationForm.get('zip').dirty" class="text-danger">
             <div *ngIf= "registrationForm.get('zip').errors">
               <div *ngIf= "registrationForm.get('zip').errors.required">
-                *Zip field is required
+                <img src="../../assets/alert-triangle.svg" alt="Error"> Zip field is required
               </div>
               <div *ngIf= "registrationForm.get('zip').errors.pattern" class="text-danger">
-                *Zip code should be only in numeric and 6 digits
+                <img src="../../assets/alert-triangle.svg" alt="Error"> Zip code should be only in numeric and 6 digits
               </div>
             </div>
           </div>
@@ -157,7 +157,7 @@
           <input class="form-check-input" type="radio" formControlName="gender" id="genderO" value="others" >
           <label class="form-check-label" for="genderO">Others</label>
         </div>
-        <div class="text-danger" *ngIf="!registrationForm.valid">* All fields are mandatory</div>
+        <div class="text-danger" *ngIf="!registrationForm.valid"><img src="../../assets/alert-triangle.svg" alt="Error"> All fields are mandatory</div>
       </div>
       
       <div class="form-row">
@@ -172,7 +172,7 @@
   </div>
 <div class="container" *ngIf="registrationComplete" style="margin-top: 1em;">
   <div class="alert alert-success" role="alert">
-    Registration Successful 
+    <img src="../../assets/check-circle.svg" alt="Successful"> Registration Successful 
   </div>
   <button type="button" class="btn btn-info" (click)="gotoLogin()">Log-in Now</button>
 </div>
