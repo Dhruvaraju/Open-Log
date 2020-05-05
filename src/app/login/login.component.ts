@@ -24,7 +24,7 @@ export class LoginComponent {
   userRegistered : boolean;
   pwdControl ;
   userNameAvailable : boolean;
-  registrationComplete : boolean;
+
   onNgInit(){
     
   }
@@ -47,7 +47,6 @@ export class LoginComponent {
     });
     this.login = true;
     this.register = false;
-    this.registrationComplete = false;
   }
 
   //building Registration form
@@ -95,15 +94,12 @@ export class LoginComponent {
   gotoLogin(){
     this.login =  true;
     this.register = false;
-    this.registrationComplete = false;
+    this.resetRegisterForm();
   }
 
   onRegistrationSubmit(){
     let userDetail = JSON.stringify(this.registrationForm.value);
     this.userService.addUser(this.registrationForm.value);
-    this.login =  false;
-    this.register = false;
-    this.registrationComplete = true;
   }
 
   userNameVerify(){

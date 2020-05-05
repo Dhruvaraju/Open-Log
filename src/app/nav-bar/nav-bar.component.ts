@@ -16,6 +16,7 @@ export class NavBarComponent implements OnInit {
   constructor(private router : Router, private logger: ManageUsersService, private store: Store<State>) { 
     logger.log("Current Page :" + router.getCurrentNavigation().finalUrl);
     store.select(state => state).subscribe(details => {
+      console.log('From Nav: '+details.logins.loggedInUser);
       this.userName = details.logins.loggedInUser;
     })
   }
