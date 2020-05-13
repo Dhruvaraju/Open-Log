@@ -20,8 +20,7 @@ export class ManageUsersService {
   ];
   constructor() { }
 
-  checkUserAvailability(userName : String, pwd : String){
-    console.log(`username is ${userName} and password is ${pwd}`);  
+  checkUserAvailability(userName : String, pwd : String){ 
       for(let user of this.usersList){
         if(userName == user.regUserName && pwd == user.regPassword){
           return true;
@@ -32,7 +31,7 @@ export class ManageUsersService {
 
   addUser(userDetail : User){
     this.usersList.push(userDetail);
-    console.log("Console from service"+JSON.stringify(this.usersList));
+    //console.log("Console from service"+JSON.stringify(this.usersList));
     return true;
   }
 

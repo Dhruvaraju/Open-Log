@@ -3,7 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { State } from '../reducers';
-import { ManageUsersService } from '../services/manage-users.service'
+import { ManageUsersService } from '../services/manage-users.service';
 
 @Injectable({
   providedIn: 'root'

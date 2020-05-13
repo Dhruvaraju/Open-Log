@@ -10,9 +10,6 @@
 <div class="container">
   <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
     <a class="navbar-brand" href="#">Open Log</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
   </nav>
   <main role="main">
     <div class="jumbotron"*ngIf="login" style="margin-top: 0.5em;">
@@ -23,7 +20,7 @@
           Git repositories of a user can be accessed by using the git hub open API.
         </p>
         <p>
-          <button class="btn btn-primary" (click)="onRegClick()" *ngIf="login">Sign up &raquo;</button>
+          <button class="btn btn-primary" (click)="onRegClick()" *ngIf="login" id="signUpButton">Sign up &raquo;</button>
         </p>
       </div>
     </div>
