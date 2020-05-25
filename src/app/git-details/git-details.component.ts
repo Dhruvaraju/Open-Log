@@ -5,6 +5,9 @@ import { GitUser } from '../objects/gituser';
 import {RootObject, Owner, License} from '../objects/repos';
 import { catchError } from 'rxjs/operators';
 
+/*
+* This component will provide details about the git user and git repositories
+*/
 @Component({
   selector: 'app-git-details',
   templateUrl: './git-details.component.html',
