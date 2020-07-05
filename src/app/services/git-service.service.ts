@@ -10,12 +10,12 @@ export class GitService {
   constructor(private http: HttpClient) { }
 
   getUserDetail(userName){
-    let url = 'http://api.github.com/users/'+userName;
+    let url = 'https://api.github.com/users/'+userName;
     return this.http.get(url, {observe: 'response'});
   }
 
   getRepos(usr){
-    let url = 'http://api.github.com/users/'+usr+'/repos';
+    let url = 'https://api.github.com/users/'+usr+'/repos';
     return this.http.get(url,{observe: 'response'});
   }
 }

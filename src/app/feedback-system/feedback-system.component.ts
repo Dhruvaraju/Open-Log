@@ -31,7 +31,11 @@ export class FeedbackSystemComponent implements OnInit {
   }
 
   feedbackSubmitted(){
-    console.log(this.feedbackForm.value);
+    //console.log(this.feedbackForm.value);
+  }
+
+  gotoFeedback(){
+    this.feedbackForm.reset();
   }
 
 

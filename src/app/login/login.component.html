@@ -32,12 +32,12 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()" class="px-4 py-3 border-dark">
       <div class="form-group">
         <label for="username">Username<span style="color: red;">*</span> :</label>
-        <input type="username" class="form-control" id="userName" formControlName="userName" aria-describedby="emailHelp" autofocus>
+        <input type="username" class="form-control" style="width: 20em;" id="userName" formControlName="userName" aria-describedby="emailHelp" autofocus>
         <small id="userName" class="form-text text-muted">Username is case sensitive</small>
       </div>
       <div class="form-group">
         <label for="loginPassword">Password<span style="color: red;">*</span></label>
-        <input type="password" class="form-control" id="loginPassword" formControlName="passWord" >
+        <input type="password" class="form-control" style="width: 20em;" id="loginPassword" formControlName="passWord" >
       </div>
       <div class="text-danger" *ngIf="userRegistered">
         <img src="../../assets/alert-triangle.svg" alt="Error"> User not registered kindly register.
@@ -59,16 +59,16 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="firstName">First Name</label>
-          <input type="text" formControlName="firstName" class="form-control" id="firstName" >
+          <input type="text" formControlName="firstName" class="form-control" style="width: 20em;" id="firstName" >
         </div>
         <div class="form-group col-md-6">
           <label for="lastName">Last Name</label>
-          <input type="text" formControlName="lastName" class="form-control" id="lastName">
+          <input type="text" formControlName="lastName" class="form-control" style="width: 20em;" id="lastName">
         </div>
       </div>
       <div class="form-group">
         <label for="inputUsername">Username</label>
-        <input type="text" class="form-control" formControlName="regUserName" id="inputUsername" (keyup)="userNameVerify()">
+        <input type="text" class="form-control" formControlName="regUserName" style="width: 20em;" id="inputUsername" (keyup)="userNameVerify()">
         <div *ngIf= "userNameAvailable" class="text-danger">
           <img src="../../assets/alert-triangle.svg" alt="Error"> Username taken choose other user name.
         </div>
@@ -86,9 +86,10 @@
           </div>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-row">
+        <div class="form-group col-md-6">
         <label for="regPassword">Password</label>
-        <input type="password" formControlName="regPassword" class="form-control" id="regPassword" placeholder="">
+        <input type="password" formControlName="regPassword" class="form-control" style="width: 20em;" id="regPassword" placeholder="">
           <div *ngIf="registrationForm.get('regPassword').dirty" class="text-danger">
             <div *ngIf= "registrationForm.get('regPassword').errors">
               <div *ngIf= "registrationForm.get('regPassword').errors.required">
@@ -102,24 +103,25 @@
               </div>
             </div>
           </div>
-      </div>
-      <div class="form-group">
+        </div>
+        <div class="form-group col-md-6">
         <label for="confirmPassword">Confirm password</label>
-        <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword" placeholder="">
+        <input type="password" formControlName="confirmPassword" class="form-control" style="width: 20em;" id="confirmPassword" placeholder="">
         <div  *ngIf="registrationForm.get('confirmPassword').errors">
         <div *ngIf="registrationForm.get('confirmPassword').errors.mustMatch" class="text-danger">
           <img src="../../assets/alert-triangle.svg" alt="Error"> Password did not match</div>
         </div>
       </div>
+      </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputCity">City</label>
-          <input type="text" class="form-control" formControlName="city" id="inputCity">
+          <input type="text" class="form-control" style="width: 20em;" formControlName="city" id="inputCity">
         </div>
         <div class="form-group col-md-4">
           <label for="inputState">State</label>
-          <select id="inputState" class="form-control" formControlName="state">
+          <select id="inputState" class="form-control" style="width: 15em;" formControlName="state">
             <option>TamilNadu</option>
             <option>Andhra</option>
             <option>Kerala</option>
@@ -129,7 +131,7 @@
         </div>
         <div class="form-group col-md-2">
           <label for="inputZip">Zip</label>
-          <input type="text" class="form-control" id="inputZip" formControlName="zip">
+          <input type="text" class="form-control" style="width: 20em;" id="inputZip" formControlName="zip">
           <div *ngIf="registrationForm.get('zip').dirty" class="text-danger">
             <div *ngIf= "registrationForm.get('zip').errors">
               <div *ngIf= "registrationForm.get('zip').errors.required">

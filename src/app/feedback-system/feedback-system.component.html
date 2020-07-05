@@ -22,80 +22,80 @@
         <div class="container" style="margin-left: 5rem;margin-top:2rem;">
         <form [formGroup]="feedbackForm" (ngSubmit)="feedbackSubmitted()">
             <div class="form-row" style="margin-top: 1rem;">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" style="width: 15em;">
                     <label for="username">Username<span class="text-danger">*</span>: </label>
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="text" class="form-control" formControlName="userName" id="username" placeholder="Enter Name" autofocus>
+                    <input type="text" class="form-control" style="width: 15em;" formControlName="userName" id="username" placeholder="Enter Name" autofocus>
                 </div>
             </div>
             <div class="form-row" style="margin-top: 1rem;">
-                <div class="form-group col-md-4">
-                    <label for="username">Email<span class="text-danger">*</span>: </label>
+                <div class="form-group col-md-4" >
+                    <label for="username" >Email<span class="text-danger">*</span>: </label>
                 </div>
                 <div class="form-group col-md-4">
-                  <input type="text" class="form-control" formControlName="email" id="inputPassword4" placeholder="Enter Email Address">
+                  <input type="text" class="form-control" style="width: 15em;" formControlName="email" id="inputPassword4" placeholder="Enter Email Address">
                 </div>
             </div>
             <div class="form-row" style="margin-top: 0.5rem;">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" style="width: 15em;">
                     <label for="navigationDD">How easy is the Navigation in the website<span class="text-danger">*</span>:</label>
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-2" style="width: 15em;">
                     <select class="form-control" id="navigationDD" formControlName="navigation">
                         <option *ngFor ="let option of selectionList" >{{option}}</option>
                     </select>
                 </div>
             </div>
             <div class="form-row" style="margin-top: 0.25rem;">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" style="width: 15em;">
                     <label for="appealingDD">How visually appealing is our website<span class="text-danger">*</span>:</label>
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-2" style="width: 15em;">
                     <select class="form-control" id="appealingDD" formControlName="appeal" >
                         <option *ngFor ="let option of selectionList" >{{option}}</option>
                     </select>
                 </div>
             </div>
             <div class="form-row" style="margin-top: 0.25rem;">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" style="width: 15em;">
                     <label for="understandDD">How easy to understand information here<span class="text-danger">*</span>:</label>
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-2" style="width: 15em;">
                         <select class="form-control" id="understandDD" formControlName="infoUnderstand" >
                             <option *ngFor ="let option of selectionList" >{{option}}</option>
                         </select>
                 </div>
             </div>
             <div class="form-row" style="margin-top: 0.25rem;">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" style="width: 15em;">
                     <label for="exampleFormControlSelect1">Something that you liked about this site<span class="text-danger">*</span>:</label>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" style="width: 15em;">
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="60" formControlName="liked"></textarea>
                 </div>
             </div>
             <div class="form-row" style="margin-top: 0.25rem;">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" style="width: 15em;">
                     <label for="exampleFormControlSelect1">Things that you do not like about the site<span class="text-danger">*</span>:</label>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" style="width: 15em;">
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="60" formControlName="didNotLike"></textarea>
                 </div>
             </div>
             <div class="form-row" style="margin-top: 0.25rem;">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" style="width: 15em;">
                     <label for="exampleFormControlSelect1">Please provide any suggestions and improvement if any:</label>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" style="width: 15em;">
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="60" formControlName="suggestions"></textarea>
                 </div>
             </div>
             <div class="form-row" style="margin-top: 0.25rem;">
-                <div class="form-group col-md-4">
-                    <button type="submit" class="btn btn-primary" [disabled]="!feedbackForm.valid">Submit</button>
+                <div class="form-group col-md-4" style="width: 15em;">
+                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" [disabled]="!feedbackForm.valid">Submit</button>
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-2" style="width: 15em;">
                     <button type="reset" class="btn btn-info" (click)="feedbackForm.reset">Reset</button>
                 </div>
             </div>            
@@ -104,6 +104,28 @@
     <!-- Feedback form End-->
 </div>
 </div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Feedback Submitted</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="gotoFeedback()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-success" role="alert">
+            <img src="../../assets/check-circle.svg" alt="Successful"> Thank you 
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="gotoFeedback()" >Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
 
